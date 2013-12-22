@@ -1,0 +1,24 @@
+{
+  "name": "javascript-introduction",
+  "version": "0.0.1",
+  "description": "An introduction to javascript for newbies",
+  "homepage": "http://redaemn.github.io/javascript-introduction",
+  "author": {
+    "name": "Gabriele Rabbiosi",
+    "url": "https://plus.google.com/+GabrieleRabbiosi/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/redaemn/javascript-introduction.git"
+  },
+  "devDependencies": {
+    "grunt-contrib-watch": "~0.5",
+    "grunt-contrib-connect": "~0.5"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/redaemn/javascript-introduction/blob/master/LICENSE"
+    }
+  ]
+}
