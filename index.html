@@ -102,6 +102,15 @@ diameter.apply(null, [2]);
 						</li>
 						<li class="fragment">
 							The <code>arguments</code> object
+							<pre><code data-trim>
+function test() {
+  console.log(arguments);
+}
+
+test();
+test("a");
+test("a", 5);
+							</code></pre>
 						</li>
 					</ul>
 
@@ -133,7 +142,7 @@ console.log(j);
 					</ul>
 
 					<aside class="notes">
-						Indeed, a variable is defined even BEFORE its "var" definition, show a demo.<br/>
+						Indeed, a variable is defined even BEFORE its "var" definition, show a demo. We'll see why<br/>
 						We'll see what global scope means in a moment
 					</aside>
 				</section>
@@ -161,10 +170,10 @@ function adder(base) {
 						</ul>
 
 						<aside class="notes">
-							- a function's execution context delimits a function's scope and includes everything that's inside {} of a function's definition (it's defined statically, based on how the code is written)
-							- An execution context has a variable object. Any variables and functions defined inside the function are added as properties on this object
-							- Before running any code, the JavaScript engine creates a global object whose initial properties are the built-ins defined by ECMAScript, such as Object, String, Array and others, in addition to host defined properties
-							- all these are NOT objects usable by your program, they're used by the javascript runtime to execute the code
+							- a function's execution context delimits a function's scope and includes everything that's inside curly brackets ({}) in a function's definition (it's defined statically, based on how the code is written)<br/>
+							- An execution context has a variable object. Any variables and functions defined inside the function are added as properties on this object<br/>
+							- Before running any code, the JavaScript engine creates a global object whose initial properties are the built-ins defined by ECMAScript, such as Object, String, Array and others, in addition to host defined properties<br/>
+							- all these are NOT objects usable by your program, they're used by the javascript runtime to execute the code<br/>
 						</aside>
 					</section>
 					<section>
@@ -183,7 +192,7 @@ function adder(base) {
 
 						<aside class="notes">
 							Now you undestand the behaviour seen previously. <br/>
-							Best practice to "evitare" having problems: declare all variables at the start of a scope (function)
+							Best practice to avoid problems: declare all variables at the start of a scope (i.e. a function)
 						</aside>
 					</section>
 				</section>
@@ -237,26 +246,148 @@ var o2 = {
 							</li>
 							<li class="fragment">
 								calling it as a function causes <code>this</code> to be set to the global object
+
+								<pre><code data-trim contenteditable>
+var a = "a";
+
+function test() {
+  return this.a;
+}
+
+test();
+								</code></pre>
 							</li>
-							<li class="fragment">
-								calling it as a method causes <cdoe>this</code> to be the object through which the function is called
+						</ul>
+
+						<aside class="notes">
+							this is not caused by the fact that the "test" function is declared in the same scope of the "a" variable; show an example with a function defined inside "test" function
+						</aside>
+					</section>
+					<section>
+						<h2>The <code style="text-transform: none;">this</code> keyword</h2>
+						<ul>
+							<li>
+								calling it as a method causes <code>this</code> to be the object through which the function is called
+
+								<pre><code data-trim>
+var person = {
+  name: "World",
+  sayHi: function() {
+    return "Hello " + this.name;
+  }
+};
+
+person.sayHi();
+								</code></pre>
 							</li>
 							<li class="fragment">
 								allows JavaScript objects to share function objects and still have them execute on the right object
+
+								<pre><code data-trim>
+var person2 = {
+  name: "Gabriele",
+  sayHi: person.sayHi
+};
+
+person2.sayHi();
+								</code></pre>
 							</li>
 						</ul>
-					</section>
-					<section>
-						<pre><code data-trim>
-							// TODO: include some demo of the previous slide
-						</code></pre>
 					</section>
 					<section>
 						<h2>The <code style="text-transform: none;">this</code> keyword</h2>
 						<ul>
 							<li>Explicitly setting <code>this</code></li>
+							<pre style="width: 110%;"><code data-trim>
+person.sayHi.call({ name: "John" });
+							</code></pre>
 						</ul>
 					</section>
+				</section>
+
+				<section>
+					<h2>Javascript is single-threaded</h2>
+					<img height="420" src="http://ejohn.org/files/Timers.png" alt="Javascript timers">
+					<small>Image taken from <a href="http://ejohn.org/blog/how-javascript-timers-work/" target="_blank">http://ejohn.org/blog/how-javascript-timers-work/</a></small>
+				</section>
+
+				<section>
+					<h2>Closure</h2>
+
+					<pre><code data-trim>
+function adder(base) {
+  return function(num) {
+    return base + num;
+  };
+}
+					</pre></code>
+
+					<ul>
+						<li class="fragment">inside the anonymous function returned by <code>adder</code>, the <code>base</code> variable is known as a <em>free variable</em></li>
+						<li class="fragment">it lives on after the <code>adder</code> function has finisced executing, as long as someone holds a reference to the returned function</li>
+					</ul>
+
+					<aside class="notes">
+						JavaScript supports nested functions, which allows for closures that can keep private state, and can be used to implement many useful patterns
+					</aside>
+				</section>
+
+				<section>
+					<h2>Stateful Functions</h2>
+
+					<ul>
+						<li>A closure can maintain state through its free variables.</li>
+						<li class="fragment">The scope chain that allows access to these free variables is only accessible from within the scope chain itself, which means that free variables by definition are <strong>private</strong>.</li>
+					</ul>
+
+					<pre class="fragment"><code data-trim>
+function uniqueIdGenerator(start) {
+  var currentId = start || 0;
+
+  return function() {
+    return currentId++;
+  }
+}
+					</pre></code>
+
+					<aside class="notes">
+						Every new execution of "uniqueIdGenerator" creates a new execution context and a new scope chain; this means that a generator's state cannot interfere with the state of a previously created generator
+					</aside>
+				</section>
+
+				<section>
+					<h2>Immediately Called Anonymous Functions</h2>
+
+					<pre><code data-trim>
+(function () {
+  /* ... */
+}());
+					</code></pre>
+
+					<ul>
+						<li class="fragment">avoid littering the global scope with temporary variables by simply wrapping our code in a self-executing closure</li>
+						<li class="fragment">simulate block scope</li>
+					</ul>
+
+					<pre class="fragment"><code data-trim>
+var names = ['John', 'Gabriele'];
+
+(function() {
+  var i;
+  for (i = 0; i < names.length; i++) {
+    console.log("Hello " + names[i]);
+  }
+}());
+					</code></pre>
+
+					<aside class="notes">
+						JavaScript only has global scope and function scope, we need to avoid leaking objects into the global scope because doing so increases our chances of naming collisions with other scripts (and bugs in our scripts)<br/>
+						This pattern is used EVERYWHERE, see some jQuery plugin (i.e. cycle jquery plugin)
+					</aside>
+				</section>
+
+				<section>
+					<h2>Namespaces</h2>
 				</section>
 
 				<section>
