@@ -58,6 +58,24 @@
 				</section>
 
 				<section>
+					<h2>Presentation Objectives</h2>
+					<ul>
+						<li class="fragment">Explain some peculiar concepts about JavaScript, not found in any classical OO language ...</li>
+						<li class="fragment">
+							... so that, at the end of the presentation, you will be able to understand <em>what</em> this code does and <em>why</em> it works
+
+							<pre><code data-trim>
+								/* put some cryptic cod here! */
+							</code></pre>
+						</li>
+					</ul>
+
+					<aside class="notes">
+						At the end of this presentation, you should be able to go out there, pick the source code of a javascript framework (jQuery, Kendo, ...), read it and understand why it works (and hopefully learn much more interesting things!!)
+					</aside>
+				</section>
+
+				<section>
 					<h2 style="text-transform: none;">function()</h2>
 					<ul>
 						<li class="fragment">
@@ -125,11 +143,19 @@ test("a", 5);
 						<li>
 							NO block scope
 							<pre style="width: auto;"><code data-trim>
-for (var i = 1; i &lt; 5; i++) {
-  var j = i+1;
+function test() {
+  /* console.log(i);
+  console.log(j); */
+
+  for (var i = 1; i &lt; 5; i++) {
+    var j = i+1;
+  }
+
+  console.log(i);
+  console.log(j);
 }
-console.log(i);
-console.log(j);
+
+test();
 							</code></pre>
 						</li>
 						<li class="fragment">
@@ -186,7 +212,7 @@ function adder(base) {
 								For any function declarations, add corresponding properties on the variable object whose values are the functions. If a function declaration uses the same identifier as one of the formal parameters, the property is overwritten.
 							</li>
 							<li class="fragment highlight-current-blue">
-								For any variable declarations, add corresponding properties on the variable object and initialize the properties to undefined, regardless of how the variables are initialized in source code. If a variable uses the same identifier as an already defined property (i.e., a parameter or function), do not overwrite it.
+								For any variable declarations, add corresponding properties on the variable object and initialize the properties to <code>undefined</code>, regardless of how the variables are initialized in source code. If a variable uses the same identifier as an already defined property (i.e., a parameter or function), do not overwrite it.
 							</li>
 						</ol>
 
@@ -227,12 +253,16 @@ console.log(inc(5));
 var o1 = {
   name: “circle”,
   radius: 2,
-  diameter: function () { ... }
+  diameter: function () { /* ... */ }
 };
+
+console.log(o1.name);
 
 var o2 = {
   “invalid-key-constant”: “value”
 };
+
+console.log(o2[“invalid-key-constant”]);
 
 					</code></pre>
 				</section>
@@ -324,7 +354,7 @@ function adder(base) {
 
 					<ul>
 						<li class="fragment">inside the anonymous function returned by <code>adder</code>, the <code>base</code> variable is known as a <em>free variable</em></li>
-						<li class="fragment">it lives on after the <code>adder</code> function has finisced executing, as long as someone holds a reference to the returned function</li>
+						<li class="fragment">it lives on after the <code>adder</code> function has finished executing, as long as someone holds a reference to the returned function</li>
 					</ul>
 
 					<aside class="notes">
@@ -378,6 +408,8 @@ var names = ['John', 'Gabriele'];
     console.log("Hello " + names[i]);
   }
 }());
+
+console.log(i);
 					</code></pre>
 
 					<aside class="notes">
@@ -388,6 +420,25 @@ var names = ['John', 'Gabriele'];
 
 				<section>
 					<h2>Namespaces</h2>
+
+					<p>
+						A good strategy to stay out of the global scope is to use some kind of namespacing
+					</p>
+
+					<pre class="fragment"><code data-trim>
+var reply = {
+  applicationConfig: {
+    config1: "...",
+    config2: 42
+  }
+  customCalendar: function() { /* ... */ }
+};
+					</code></pre>
+
+					<aside class="notes">
+						You could create your personal framework and it should have a single entry point stored inside the global object.<br/>
+						This pattern too is used EVERYWHERE (jQuery, Kendo, ...)
+					</aside>
 				</section>
 
 				<section>
@@ -402,6 +453,12 @@ var names = ['John', 'Gabriele'];
 						</li>
 						<li><a href="https://developer.mozilla.org" target="_blank">https://developer.mozilla.org</a>
 					</ul>
+				</section>
+
+				<section>
+					<h2>Final quiz</h2>
+
+					<a href="">link to the quiz here!</a>
 				</section>
 
 			</div>
