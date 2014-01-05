@@ -16,6 +16,7 @@
 
 		<link rel="stylesheet" href="css/reveal.min.css">
 		<link rel="stylesheet" href="css/theme/default.css" id="theme">
+		<link rel="stylesheet" href="css/custom.css">
 
 		<!-- For syntax highlighting -->
 		<link rel="stylesheet" href="lib/css/zenburn.css">
@@ -33,6 +34,26 @@
 	<body>
 
 		<div class="reveal">
+
+			<div class="fixed-header">
+				<div class="container">
+					<div class="social">
+						<span style="margin-right: 10px;">If you find this presentation useful, <em>please</em> let me know</span>
+
+						<div class="social-buttons">
+							<iframe src="http://ghbtns.com/github-btn.html?user=redaemn&repo=javascript-introduction&type=watch&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="110" height="20"></iframe>
+							
+							<div class="g-plusone" data-annotation="inline" data-width="210"></div>
+
+							<a href="https://twitter.com/share" class="twitter-share-button" data-via="redaemn">Tweet</a>
+						</div>
+					</div>
+
+					<div class="author-info">
+						made with &#9825; by <a href="https://github.com/redaemn" target="_blank">ReDaemn</a> using <a href="https://github.com/hakimel/reveal.js" target="_blank">reveal.js</a>
+					</div>
+				</div>
+			</div>
 
 			<!-- Any section element inside of this container is displayed as a slide -->
 			<div class="slides">
@@ -58,20 +79,30 @@
 				</section>
 
 				<section>
-					<h2>Presentation Objectives</h2>
+					<h2>Presentation Goal</h2>
 					<ul>
 						<li class="fragment">Explain some peculiar concepts about JavaScript, not found in any classical OO language ...</li>
 						<li class="fragment">
 							... so that, at the end of the presentation, you will be able to understand <em>what</em> this code does and <em>why</em> it works
 
 							<pre><code data-trim>
-								/* put some cryptic cod here! */
+/* The .bind method from Prototype.js */
+Function.prototype.bind = function(){ 
+  var fn = this,
+    args = Array.prototype.slice.call(arguments),
+    object = args.shift(); 
+
+  return function(){ 
+    return fn.apply(object, 
+      args.concat(Array.prototype.slice.call(arguments))); 
+  }; 
+};
 							</code></pre>
 						</li>
 					</ul>
 
 					<aside class="notes">
-						At the end of this presentation, you should be able to go out there, pick the source code of a javascript framework (jQuery, Kendo, ...), read it and understand why it works (and hopefully learn much more interesting things!!)
+						At the end of this presentation, you should be able to go out there, pick the source code of a javascript framework (jQuery, Kendo, ...), read it and understand why it works (and hopefully learn many more interesting things!!)
 					</aside>
 				</section>
 
@@ -458,7 +489,7 @@ var reply = {
 				<section>
 					<h2>Final quiz</h2>
 
-					<a href="">link to the quiz here!</a>
+					<a href="http://madebyknight.com/javascript-scope/" target="_blank">Start!</a>
 				</section>
 
 			</div>
@@ -496,6 +527,20 @@ var reply = {
 				]
 			});
 
+		</script>
+
+		<!-- G+ button -->
+  		<script type="text/javascript">
+    	(function() {
+			var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+			po.src = 'https://apis.google.com/js/plusone.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+			})();
+		</script>
+
+		<!-- Twitter button -->
+		<script>
+		!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
 		</script>
 
 	</body>

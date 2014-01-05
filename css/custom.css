@@ -1,0 +1,33 @@
+.reveal .fixed-header {
+	position: absolute;
+	top: 0;
+	z-index: 1;
+	font-size: 0.5em;
+	width: 100%;
+}
+
+.reveal .fixed-header .container {
+	padding: 0.5em 0.5em 0 0.5em;
+}
+
+.reveal .fixed-header .container:after {
+	content: ".";
+	display: block;
+	visibility: hidden;
+	clear: both;
+}
+
+.reveal .fixed-header .social {
+	float: left;
+	padding-bottom: 0.5em;
+}
+
+.reveal .fixed-header .social .social-buttons,
+.reveal .fixed-header .social .social-buttons * {
+	display: inline-block;
+}
+
+.reveal .fixed-header .author-info {
+	float: right;
+	padding-bottom: 0.5em;
+}
