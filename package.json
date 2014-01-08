@@ -11,6 +11,10 @@
     "type": "git",
     "url": "https://github.com/redaemn/javascript-introduction.git"
   },
+  "dependencies": {
+    "express": "~2.5.9",
+    "socket.io": "~0.9.13"
+  },
   "devDependencies": {
     "grunt": "~0.4",
     "grunt-contrib-watch": "~0.5",

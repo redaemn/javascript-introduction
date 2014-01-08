@@ -534,8 +534,18 @@ var reply = {
 					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
 					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
 					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
-					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
-				]
+					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } },
+
+					{ src: '//cdnjs.cloudflare.com/ajax/libs/socket.io/0.9.10/socket.io.min.js', async: true },
+					{ src: 'plugin/multiplex/client.js', async: true }
+				], 
+
+				multiplex: {
+					// Example values. To generate your own, see the socket.io server instructions.
+					secret: null, // Obtained from the socket.io server. Gives this (the master) control of the presentation
+					id: '41da9d963d1e786f', // Obtained from socket.io server
+					url: 'http://javascript-introduction-c9-redaemn.c9.io:80' // Location of socket.io server
+				}
 			});
 
 		</script>
