@@ -92,9 +92,9 @@
 				<section>
 					<h2>Presentation Goal</h2>
 					<ul>
-						<li class="fragment">Explain some peculiar concepts about JavaScript, not found in any classical OO language ...</li>
+						<li class="fragment">Explain some <strong>peculiar concepts</strong> about JavaScript, not found in any classical OO language ...</li>
 						<li class="fragment">
-							... so that, at the end of the presentation, you will be able to understand <em>what</em> this code does and <em>why</em> it works
+							... so that you will be able to understand <em>what</em> this code does and <em>why</em> it works
 
 							<pre><code data-trim>
 /* The .bind method from Prototype.js */
@@ -272,7 +272,7 @@ function adder(base) {
 							Whenever a function is called, control enters a new execution context.
 						</li>
 						<li class="fragment">
-							The activation object is used for identifier resolution inside the function. In fact, identifier resolution occurs through the scope chain, which starts with the activation object of the current execution context. At the end of the scope chain is the global object.
+							The activation object is used for identifier resolution inside the function. In fact, <strong>identifier resolution occurs through the scope chain</strong>, which starts with the activation object of the current execution context. At the end of the scope chain is the global object.
 						</li>
 					</ul>
 					<pre class="fragment"><code data-trim>
@@ -314,10 +314,10 @@ console.log(o2[“invalid-key-constant”]);
 						<h2>The <code style="text-transform: none;">this</code> keyword</h2>
 						<ul>
 							<li>
-								<code>this</code> is set implicitly when calling a function using parentheses
+								<code>this</code> is set <strong>implicitly</strong> when calling a function using parentheses
 							</li>
 							<li class="fragment">
-								calling it as a function causes <code>this</code> to be set to the global object
+								calling it as a function causes <code>this</code> to be set to the <strong>global object</strong>
 
 								<pre><code data-trim contenteditable>
 var a = "a";
@@ -339,7 +339,7 @@ test();
 						<h2>The <code style="text-transform: none;">this</code> keyword</h2>
 						<ul>
 							<li>
-								calling it as a method causes <code>this</code> to be the object through which the function is called
+								calling it as a method causes <code>this</code> to be the <strong>object through which the function is called</strong>
 
 								<pre><code data-trim>
 var person = {
@@ -353,7 +353,7 @@ person.sayHi();
 								</code></pre>
 							</li>
 							<li class="fragment">
-								allows JavaScript objects to share function objects and still have them execute on the right object
+								allows JavaScript objects to <strong>share function objects</strong> and still have them <strong>execute on the right object</strong>
 
 								<pre><code data-trim>
 var person2 = {
@@ -369,7 +369,7 @@ person2.sayHi();
 					<section>
 						<h2>The <code style="text-transform: none;">this</code> keyword</h2>
 						<ul>
-							<li>Explicitly setting <code>this</code></li>
+							<li><strong>Explicitly</strong> setting <code>this</code></li>
 							<pre style="width: 110%;"><code data-trim>
 person.sayHi.call({ name: "John" });
 							</code></pre>
@@ -379,7 +379,7 @@ person.sayHi.call({ name: "John" });
 
 				<section>
 					<h2>Javascript is single-threaded</h2>
-					<img height="420" src="http://ejohn.org/files/Timers.png" alt="Javascript timers">
+					<img src="http://ejohn.org/files/Timers.png" alt="Javascript timers" style="width: 80%;">
 					<small>Image taken from <a href="http://ejohn.org/blog/how-javascript-timers-work/" target="_blank">http://ejohn.org/blog/how-javascript-timers-work/</a></small>
 				</section>
 
@@ -396,7 +396,7 @@ function adder(base) {
 
 					<ul>
 						<li class="fragment">inside the anonymous function returned by <code>adder</code>, the <code>base</code> variable is known as a <em>free variable</em></li>
-						<li class="fragment">it lives on after the <code>adder</code> function has finished executing, as long as someone holds a reference to the returned function</li>
+						<li class="fragment">it <strong>lives on</strong> after the <code>adder</code> function has finished executing, <strong>as long as someone holds a reference</strong> to the returned function</li>
 					</ul>
 
 					<aside class="notes">
@@ -408,7 +408,7 @@ function adder(base) {
 					<h2>Stateful Functions</h2>
 
 					<ul>
-						<li>A closure can maintain state through its free variables.</li>
+						<li>A closure can <strong>maintain state through its free variables</strong>.</li>
 						<li class="fragment">The scope chain that allows access to these free variables is only accessible from within the scope chain itself, which means that free variables by definition are <strong>private</strong>.</li>
 					</ul>
 
@@ -437,7 +437,7 @@ function uniqueIdGenerator(start) {
 					</code></pre>
 
 					<ul>
-						<li class="fragment">avoid littering the global scope with temporary variables by simply wrapping our code in a self-executing closure</li>
+						<li class="fragment"><strong>avoid littering the global scope</strong> with temporary variables by simply wrapping our code in a self-executing closure</li>
 						<li class="fragment">simulate block scope</li>
 					</ul>
 
@@ -493,7 +493,8 @@ var reply = {
 							<strong>Test-Driven JavaScript Development</strong> <em>by Christian Johansen</em>
 							(<a href="http://tddjs.com/" target="_blank">http://tddjs.com/</a>)
 						</li>
-						<li><a href="https://developer.mozilla.org" target="_blank">https://developer.mozilla.org</a>
+						<li><a href="https://developer.mozilla.org" target="_blank">https://developer.mozilla.org</a></li>
+						<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript" target="_blank">A re-introduction to JavaScript (JS Tutorial)</a></li>
 					</ul>
 				</section>
 
