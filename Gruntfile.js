@@ -1,6 +1,6 @@
 /* global module:false */
 module.exports = function(grunt) {
-	var port = process.env ? process.env.PORT : ( grunt.option('port') || 8000 );
+	var port = process.env.C9_PROJECT ? process.env.PORT : ( grunt.option('port') || 8000 );
 	// Project configuration
 	grunt.initConfig({
 		pkg: grunt.file.readJSON('package.json'),
@@ -9,7 +9,7 @@ module.exports = function(grunt) {
 				options: {
 					port: port,
 					base: '.',
-					livereload: true
+					livereload: process.env.C9_PROJECT ? false : true
 				}
 			}
 		},
@@ -18,7 +18,7 @@ module.exports = function(grunt) {
 			presentation: {
 				files: [ 'index.html' ],
 				options: {
-					livereload: process.env ? process.env.PORT : true
+					livereload: process.env.C9_PROJECT ? false : true
 				}
 			}
 		}
